@@ -8,21 +8,21 @@
 # STEP 1. Change these values to your liking.
 
 PLUGIN_NAME="$(basename $(dirname $(realpath $0)))"  # name of current directory
-PLUGIN_TITLE='My ChRIS Plugin'
-SCRIPT_NAME='commandname'
-DESCRIPTION='A ChRIS plugin to do something awesome'
+PLUGIN_TITLE='Invert Image'
+SCRIPT_NAME='invert_image'
+DESCRIPTION='A ChRIS plugin to invert images'
 ORGANIZATION='FNNDSC'
 EMAIL='dev@babyMRI.org'
 
 # Continuous integration: automatically test and build your code.
 # You are advised to review the file .github/workflows/ci.yml
 # https://github.com/FNNDSC/python-chrisapp-template/wiki/Continuous-Integration#use-ci
-ENABLE_ACTIONS_TEST=yes
+ENABLE_ACTIONS_TEST=no
 ENABLE_ACTIONS_BUILD=yes
 
 # STEP 2. Uncomment the line below.
 
-#READY=yes
+READY=yes
 
 # STEP 3. Run: ./bootstrap.sh
 
