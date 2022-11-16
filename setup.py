@@ -1,18 +1,18 @@
 from setuptools import setup
 
 setup(
-    name='chris-plugin-template',
+    name='invertimage',
     version='1.0.0',
-    description='A ChRIS DS plugin template',
+    description='A ChRIS plugin to invert images',
     author='FNNDSC',
     author_email='dev@babyMRI.org',
-    url='https://github.com/FNNDSC/python-chrisapp-template',
-    py_modules=['app'],
+    url='https://github.com/KaiserV2/pl-invertimage',
+    py_modules=['invert_image'],
     install_requires=['chris_plugin'],
     license='MIT',
     entry_points={
         'console_scripts': [
-            'commandname = app:main'
+            'invert_image = invert_image:main'
         ]
     },
     classifiers=[
