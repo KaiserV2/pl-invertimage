@@ -5,12 +5,14 @@
 [![ci](https://github.com/FNNDSC/pl-invertimage/actions/workflows/ci.yml/badge.svg)](https://github.com/FNNDSC/pl-invertimage/actions/workflows/ci.yml)
 
 `pl-invertimage` is a [_ChRIS_](https://chrisproject.org/)
-_ds_ plugin which takes in ...  as input files and
-creates ... as output files.
+_ds_ plugin which takes in images (including jpg and png type) as input files and
+inverts the intensity of each pixel as output files.
 
 ## Abstract
 
-...
+The `pl-invertimage` plugin will take in 2 Path variables: `inputdir` and `outputdir`. It will first scan all corresponding images according to the user's choice (jpg, png) under the `inputdir` directory and all its subdirectories (and subdirectories inside subdirectories). Afterwards, it will invert each pixel of the chosen image and store it into the `outputdir` directory. The plugin will create subdirectory folders if it does not exist in the `outputdir` directory.
+
+By default, it will only invert .jpg images.
 
 ## Installation
 
@@ -41,9 +43,9 @@ input data, and a directory where to create output data.
 First, create the input directory and move input data into it.
 
 ```shell
-mkdir incoming/ outgoing/
-mv some.dat other.dat incoming/
-singularity exec docker://fnndsc/pl-invertimage:latest invert_image [--args] incoming/ outgoing/
+mkdir inputdir/ outputdir/
+mv image1.jpg image2.png inputdir/
+singularity exec docker://fnndsc/pl-invertimage:latest invert_image [--args] inputdir/ outputdir/
 ```
 
 ## Development
@@ -65,8 +67,8 @@ Mount the source code `invert_image.py` into a container to try out changes with
 ```shell
 docker run --rm -it --userns=host -u $(id -u):$(id -g) \
     -v $PWD/invert_image.py:/usr/local/lib/python3.10/site-packages/invert_image.py:ro \
-    -v $PWD/in:/incoming:ro -v $PWD/out:/outgoing:rw -w /outgoing \
-    localhost/fnndsc/pl-invertimage invert_image /incoming /outgoing
+    -v $PWD/in:/inputdir:ro -v $PWD/out:/outputdir:rw -w /outputdir \
+    localhost/fnndsc/pl-invertimage invert_image /inputdir /outputdir
 ```
 
 ### Testing
