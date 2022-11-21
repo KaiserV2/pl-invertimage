@@ -8,7 +8,7 @@ setup(
     author_email='dev@babyMRI.org',
     url='https://github.com/KaiserV2/pl-invertimage',
     py_modules=['invert_image'],
-    install_requires=['chris_plugin'],
+    install_requires=['chris_plugin','Pillow'],
     license='MIT',
     entry_points={
         'console_scripts': [
