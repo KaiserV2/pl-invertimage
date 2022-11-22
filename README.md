@@ -57,7 +57,7 @@ Instructions for developers.
 Build a local container image:
 
 ```shell
-sudo docker build -t localhost/fnndsc/pl-invertimage .
+docker build -t localhost/fnndsc/pl-invertimage .
 ```
 
 ### Running
