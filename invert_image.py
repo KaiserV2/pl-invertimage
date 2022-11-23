@@ -5,7 +5,7 @@ from argparse import ArgumentParser, Namespace, ArgumentDefaultsHelpFormatter
 from importlib.metadata import Distribution
 
 from chris_plugin import chris_plugin, PathMapper
-from PIL import Image
+from PIL import Image, ImageOps
 
 __pkg = Distribution.from_name("invertimage")
 __version__ = __pkg.version
@@ -38,36 +38,8 @@ parser.add_argument(
 # tell if the figure is a jpg or png
 def invert_image(inputfile:Path, outputfile:Path):
     im = Image.open(inputfile)
-    print(f"figure format: {im.format}")
-    # if the image is a jpg, invert it 
-    if im.format == 'JPEG':
-        invert_jpgimage(inputfile, outputfile)
-    # if the image is a png, invert it
-    elif im.format == 'PNG':
-        invert_pngimage(inputfile, outputfile)
-
-def invert_jpgimage(inputfile: Path, outputfile: Path):
-    im = Image.open(inputfile)
-    im = im.convert("RGB")
-    # for all of the pixels, invert the rgb values
-    for x in range(im.size[0]):
-        for y in range(im.size[1]):
-            r, g, b = im.getpixel((x, y))
-            im.putpixel((x, y), (255 - r, 255 - g, 255 - b))
-    im.save(outputfile)
-
-def invert_pngimage(inputfile: Path, outputfile: Path):
-    # open the png image
-    im = Image.open(inputfile)
-    im = im.convert("RGBA")
-    # for all of the pixels, invert the rgb values
-    for x in range(im.size[0]):
-        for y in range(im.size[1]):
-            r, g, b, a = im.getpixel((x, y))
-            # print the pixel 
-            # print(r, g, b, a)
-            im.putpixel((x, y), (255 - r, 255 - g, 255 - b, a))
-    im.save(outputfile)
+    im_invert = ImageOps.invert(im)
+    im_invert.save(outputfile)
 
 # documentation: https://fnndsc.github.io/chris_plugin/chris_plugin.html#chris_plugin
 @chris_plugin(
