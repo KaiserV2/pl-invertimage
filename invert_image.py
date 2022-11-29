@@ -35,9 +35,14 @@ parser.add_argument(
                         help        = '''Glob pattern to match all images to invert.'''
 )
 
-# tell if the figure is a jpg or png
-def invert_image(inputfile:Path, outputfile:Path):
-    im = Image.open(inputfile)
+def invert_image(inputfile, outputfile):
+    # if inputfile ends with jpg
+    if inputfile.endswith(".jpg"):
+        im = Image.open(inputfile)
+    elif inputfile.endswith(".png"):
+        im = Image.open(inputfile).convert('RGB')
+    else:
+        print("Please input with a jpg or png file")
     im_invert = ImageOps.invert(im)
     im_invert.save(outputfile)
 
