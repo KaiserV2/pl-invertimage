@@ -37,9 +37,9 @@ parser.add_argument(
 
 def invert_image(inputfile, outputfile):
     # if inputfile ends with jpg
-    if inputfile.endswith(".jpg"):
+    if str(inputfile).endswith(".jpg"):
         im = Image.open(inputfile)
-    elif inputfile.endswith(".png"):
+    elif str(inputfile).endswith(".png"):
         im = Image.open(inputfile).convert('RGB')
     else:
         print("Please input with a jpg or png file")
